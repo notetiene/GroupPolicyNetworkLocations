@@ -1,4 +1,5 @@
-﻿Imports System
+﻿Imports System.Resources
+Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -8,11 +9,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Group Policy Network Locations Editor")>
+<Assembly: AssemblyTitle("Remove When No Longer Applied Group Policy Network Locations Editor")>
 <Assembly: AssemblyDescription("Edits the XML files need to add network locations to domain joined computers using group policy.")>
-<Assembly: AssemblyCompany("Jonathan Perry - Norwich Public School")>
+<Assembly: AssemblyCompany("Jonathan Perry - Norwich Public School - Modified by  Ryan Fixl")>
 <Assembly: AssemblyProduct("Group Policy Network Locations Editor")>
-<Assembly: AssemblyCopyright("Copyright ©  2017")>
+<Assembly: AssemblyCopyright("")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.3.0.0")>
-<Assembly: AssemblyFileVersion("1.3.0.0")>
+<Assembly: AssemblyVersion("1.3.0.1")>
+<Assembly: AssemblyFileVersion("1.3.0.1")>
+<Assembly: NeutralResourcesLanguage("en-US")>
