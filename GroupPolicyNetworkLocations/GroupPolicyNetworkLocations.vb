@@ -20,10 +20,11 @@ Public Class GroupPolicyNetworkLocations
     Const DataBlockEnd = "##DATABLOCK_NoMAD_Settings_END##"
 
     ' Used in Ini Folder and Shortcut
-    Const ShareImage = "2"
+    Const ShareImage = "1"
     Const ShareUserContext = "1"
     Const ShareBypassErrors = "1"
-
+    const ShareRemove = "1"
+    
     ' Used in Ini Folder and Shortcut Properties
     Const SharePropAction = "U"
 
@@ -451,12 +452,12 @@ Public Class GroupPolicyNetworkLocations
 
             ' This is really obnoxious to look at, and I pretty much hate myself for doing it this way.
             ' The above comment applies to specifically the next 13 lines and this program in general.
-            sbIniFilesXML.AppendLine(String.Format("  <Ini clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" userContext=""{6}"" bypassErrors=""{7}"">",
-                                                       IniClsid, Ini1Name, Ini1Status, ShareImage, shareRow("LastModified"), shareRow("Ini1UID"), ShareUserContext, ShareBypassErrors))
-            sbFoldersXML.AppendLine(String.Format("  <Folder clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" disabled=""{6}"" desc=""{7}"" userContext=""{8}"" bypassErrors=""{9}"">",
-                                                           FolderClsid, shareRow("ShareName"), shareRow("ShareName"), ShareImage, shareRow("LastModified"), shareRow("FoldersUID"), FolderDisabled, GenerateDescription(shareRow), ShareUserContext, ShareBypassErrors))
-            sbShortcutsXML.AppendLine(String.Format("  <Shortcut clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" userContext=""{6}"" bypassErrors=""{7}"">",
-                                                    ShortcutClsid, ShortcutName, ShortcutStatus, ShareImage, shareRow("LastModified"), shareRow("ShortcutsUID"), ShareUserContext, ShareBypassErrors))
+            sbIniFilesXML.AppendLine(String.Format("  <Ini clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" userContext=""{6}"" bypassErrors=""{7}"" removePolicy=""{8}"">",
+                                                       IniClsid, Ini1Name, Ini1Status, ShareImage, shareRow("LastModified"), shareRow("Ini1UID"), ShareUserContext, ShareBypassErrors, ShareRemove))
+            sbFoldersXML.AppendLine(String.Format("  <Folder clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" disabled=""{6}"" desc=""{7}"" userContext=""{8}"" bypassErrors=""{9}"" removePolicy=""{10}"">",
+                                                           FolderClsid, shareRow("ShareName"), shareRow("ShareName"), ShareImage, shareRow("LastModified"), shareRow("FoldersUID"), FolderDisabled, GenerateDescription(shareRow), ShareUserContext, ShareBypassErrors, ShareRemove))
+            sbShortcutsXML.AppendLine(String.Format("  <Shortcut clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" userContext=""{6}"" bypassErrors=""{7}"" removePolicy=""{8}"">",
+                                                    ShortcutClsid, ShortcutName, ShortcutStatus, ShareImage, shareRow("LastModified"), shareRow("ShortcutsUID"), ShareUserContext, ShareBypassErrors, ShareRemove))
 
             sbIniFilesXML.AppendLine(String.Format("    <Properties path=""{0}{1}{2}"" section=""{3}"" value=""{4}"" property=""{5}"" action=""{6}""/>",
                                                IniPropPath1, shareRow("ShareName"), IniPropPath3, IniPropSection, Ini1PropValue, Ini1PropProperty, SharePropAction))
