@@ -57,11 +57,11 @@ Public Class GroupPolicyNetworkLocations
     Const FolderDisabled = "0"
 
     ' Used in Folder Properties
-    Const FolderPropDeleteFolder = "0"
+    Const FolderPropDeleteFolder = "1"
     Const FolderPropDeleteSubFolders = "0"
-    Const FolderPropDeleteFiles = "0"
-    Const FolderPropDeleteReadOnly = "0"
-    Const FolderPropDeleteIgnoreErrors = "0"
+    Const FolderPropDeleteFiles = "1"
+    Const FolderPropDeleteReadOnly = "1"
+    Const FolderPropDeleteIgnoreErrors = "1"
     Const FolderPropPath1 = "%APPDATA%\Microsoft\Windows\Network Shortcuts\"
     Const FolderPropReadOnly = "1"
     Const FolderPropArchive = "0"
