@@ -500,8 +500,8 @@ Public Class GroupPolicyNetworkLocations
             sbShortcutsXML.AppendLine("  </Shortcut>")
 
             ' Do it again for the second IniFile setting
-            sbIniFilesXML.AppendLine(String.Format("  <Ini clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" userContext=""{6}"" bypassErrors=""{7}"">",
-                                                       IniClsid, Ini2Name, Ini2Status, ShareImage, shareRow("LastModified"), shareRow("Ini2UID"), ShareUserContext, ShareBypassErrors))
+            sbIniFilesXML.AppendLine(String.Format("  <Ini clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" userContext=""{6}"" bypassErrors=""{7}"" removePolicy=""{8}"">",
+                                                       IniClsid, Ini2Name, Ini2Status, ShareImage, shareRow("LastModified"), shareRow("Ini2UID"), ShareUserContext, ShareBypassErrors, ShareRemove))
             sbIniFilesXML.AppendLine(String.Format("    <Properties path=""{0}{1}{2}"" section=""{3}"" value=""{4}"" property=""{5}"" action=""{6}""/>",
                                                IniPropPath1, shareRow("ShareName"), IniPropPath3, IniPropSection, Ini2PropValue, Ini2PropProperty, SharePropAction))
 
