@@ -52,6 +52,10 @@ Public Class GroupPolicyNetworkLocations
     Const Ini2PropValue = "2"
     Const Ini2PropProperty = "Flags"
 
+    ' Used in Ini Properties 3
+    Const Ini3PropValue = "%WINDIR%\System32\SHELL32.dll,275"
+    Const Ini3PropProperty = "IconResource"
+
     ' Used in Folder
     Const FolderClsid = "{07DA02F5-F9CD-4397-A550-4AE21B6B4BD3}"
     Const FolderDisabled = "0"
@@ -504,6 +508,28 @@ Public Class GroupPolicyNetworkLocations
                                                        IniClsid, Ini2Name, Ini2Status, ShareImage, shareRow("LastModified"), shareRow("Ini2UID"), ShareUserContext, ShareBypassErrors, ShareRemove))
             sbIniFilesXML.AppendLine(String.Format("    <Properties path=""{0}{1}{2}"" section=""{3}"" value=""{4}"" property=""{5}"" action=""{6}""/>",
                                                IniPropPath1, shareRow("ShareName"), IniPropPath3, IniPropSection, Ini2PropValue, Ini2PropProperty, SharePropAction))
+
+            If tableFilterGroups.Select(String.Format("ShareName = '{0}'", shareRow("ShareName"))).Count() > 0 Then
+                sbIniFilesXML.AppendLine("    <Filters>")
+                Dim i As Integer = 1 ' A counter, even though I only need to know which is the first
+                For Each groupRow In tableFilterGroups.Select(String.Format("ShareName = '{0}'", shareRow("ShareName")))
+                    Dim strBool As String = "AND"
+                    If i > 1 Then strBool = "OR"
+                    Dim strFilterGroup As String = String.Format("      <FilterGroup bool=""{0}"" not=""0"" name=""{1}"" sid=""{2}"" userContext=""1"" primaryGroup=""0"" localGroup=""0""/>",
+                                                                 strBool, groupRow("GroupName"), groupRow("GroupSID"))
+                    sbIniFilesXML.AppendLine(strFilterGroup)
+                    i += 1
+                Next
+                sbIniFilesXML.AppendLine("    </Filters>")
+            End If
+
+            sbIniFilesXML.AppendLine("  </Ini>")
+
+                        ' Do it again for the third IniFile setting
+            sbIniFilesXML.AppendLine(String.Format("  <Ini clsid=""{0}"" name=""{1}"" status=""{2}"" image=""{3}"" changed=""{4:yyyy-MM-dd HH:mm:ss}"" uid=""{5}"" userContext=""{6}"" bypassErrors=""{7}"" removePolicy=""{8}"">",
+                                                       IniClsid, Ini2Name, Ini2Status, ShareImage, shareRow("LastModified"), shareRow("Ini2UID"), ShareUserContext, ShareBypassErrors, ShareRemove))
+            sbIniFilesXML.AppendLine(String.Format("    <Properties path=""{0}{1}{2}"" section=""{3}"" value=""{4}"" property=""{5}"" action=""{6}""/>",
+                                               IniPropPath1, shareRow("ShareName"), IniPropPath3, IniPropSection, Ini3PropValue, Ini3PropProperty, SharePropAction))
 
             If tableFilterGroups.Select(String.Format("ShareName = '{0}'", shareRow("ShareName"))).Count() > 0 Then
                 sbIniFilesXML.AppendLine("    <Filters>")
